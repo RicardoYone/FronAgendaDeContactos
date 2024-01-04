@@ -1,0 +1,69 @@
+<p>actualizar-contacto works!</p>
+
+<h1 mat-dialog-title>ActualizarContacto</h1>
+
+<div mat-dialog-content>
+  <form [formGroup]="formContacto">
+    <mat-grid-list cols="1" rowHeight="80px">
+      <mat-grid-tile>
+        <mat-form-field appearance="outline">
+          <mat-label>Nombre Completo</mat-label>
+          <input matInput formControlName="nombreCompleto" autocomplete="off" />
+        </mat-form-field>
+      </mat-grid-tile>
+
+      <mat-grid-tile>
+        <mat-form-field appearance="outline">
+          <mat-label>Grupo </mat-label>
+          <mat-select formControlName="idGrupo">
+            <mat-option
+              *ngFor="let item of listaGrupos"
+              [value]="item.idGrupo"
+            >
+              {{ item.nombre }}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+      </mat-grid-tile>
+
+      <mat-grid-tile>
+        <mat-form-field appearance="outline">
+          <mat-label>telefono</mat-label>
+          <input
+            matInput
+            formControlName="telefono"
+            autocomplete="off"
+            type="number"
+          />
+        </mat-form-field>
+      </mat-grid-tile>
+
+      <mat-grid-tile>
+        <mat-form-field appearance="outline">
+          <mat-label>Fecha Contrato</mat-label>
+          <input
+            matInput
+            [matDatepicker]="picker"
+            formControlName="fechaCreacion"
+          />
+          <mat-datepicker-toggle
+            matSuffix
+            [for]="picker"
+          ></mat-datepicker-toggle>
+          <mat-datepicker #picker></mat-datepicker>
+        </mat-form-field>
+      </mat-grid-tile>
+    </mat-grid-list>
+  </form>
+</div>
+<div mat-dialog-actions>
+  <button mat-raised-button mat-dialog-close color="warn">Volver</button>
+  <button
+    mat-raised-button
+    color="primary"
+    (click)="ActualizarContacto()"
+    [disabled]="formContacto.invalid"
+  >
+    {{ botonAccion }}
+  </button>
+</div>
